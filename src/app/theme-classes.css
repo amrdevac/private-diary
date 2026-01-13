@@ -71,11 +71,12 @@
   }
 
   .diary-mention-block {
-    @apply border-primary/30 bg-primary/80 dark:border-slate-800 dark:bg-slate-900/60;
+    @apply border-primary/30 bg-primary/10 dark:border-slate-800 dark:bg-slate-900/60;
   }
 
   .diary-mention-text {
     @apply text-slate-700 dark:text-slate-100;
+    font-size: calc(0.95rem * var(--diary-text-scale));
   }
 
   .diary-mention-link {

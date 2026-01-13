@@ -186,10 +186,7 @@ export default function DiaryDashboard() {
             onMentionEntry={handleAddMention}
             hasMore={hasMore}
             onLoadMore={loadMore}
-            onJumpToMention={(mention) => {
-              setMentionDrafts((prev) => prev.some((m) => m.id === mention.id) ? prev : [...prev, mention]);
-              setSearch(mention.preview);
-            }}
+            onJumpToMention={setSearch}
           />
         </div>
         <div className="w-full lg:w-[320px]">

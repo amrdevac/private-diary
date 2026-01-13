@@ -24,7 +24,7 @@ interface DiaryFeedProps {
   onMentionEntry: (entry: DiaryEntry) => void;
   hasMore: boolean;
   onLoadMore: () => void;
-  onJumpToMention?: (mention: MentionReference) => void;
+  onJumpToMention?: (query: string) => void;
 }
 
 export default function DiaryFeed({
@@ -206,8 +206,9 @@ export default function DiaryFeed({
 
   const handleJumpToMention = useCallback(
     (mention: MentionReference) => {
-      onSearchChange(mention.preview);
-      onJumpToMention?.(mention);
+      const { preview } = mention;
+      onSearchChange(preview);
+      onJumpToMention?.(preview);
       setTimelineFocused(false);
       requestAnimationFrame(() => searchRef.current?.focus());
     },
@@ -461,7 +462,7 @@ function DiaryCard({
               <p className="diary-mention-label text-[11px] uppercase tracking-[0.3em]">
                 Menyambung {formatTimeAgo(mention.createdAt)}
               </p>
-              <p className="diary-mention-text text-sm">{mention.preview}</p>
+              <p className="diary-mention-text">{mention.preview}</p>
               <button
                 type="button"
                 onClick={(event) => {
